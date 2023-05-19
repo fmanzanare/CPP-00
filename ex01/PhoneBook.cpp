@@ -41,6 +41,7 @@ std::string PhoneBook::resizeStr(std::string str)
 		return (str);
 }
 
+// CHECK IT!!!!!!!! -> WRONG PRINT!!!
 void PhoneBook::searchContact(int idx)
 {
 	if (idx >= 0 && idx < this->_idx && this->_idx != 0)
@@ -54,4 +55,9 @@ void PhoneBook::searchContact(int idx)
 	}
 	else
 		std::cout << "The index is out of range\n";
+}
+
+void PhoneBook::printPhoneBook()
+{
+
 }

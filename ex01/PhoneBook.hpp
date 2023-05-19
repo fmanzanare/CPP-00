@@ -29,6 +29,7 @@ class PhoneBook
 		void addContact(Contact contact);
 		void searchContact(int idx);
 		std::string resizeStr(std::string str);
+		void printPhoneBook(); // NOT IMPLEMMENTED!!
 };
 
 #endif

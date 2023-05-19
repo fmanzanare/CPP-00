@@ -44,6 +44,16 @@ Contact getContact()
 	return (contact);
 }
 
+bool	is_digits(std::string str)
+{
+	for (unsigned long int i = 0; i < str.length(); i++)
+	{
+		if (!(str.at(i) >= '0' && str.at(i) <= '9'))
+			return (false);
+	}
+	return (true);
+}
+
 int	main()
 {
 	PhoneBook pb = PhoneBook();
@@ -60,8 +70,12 @@ int	main()
 			pb.addContact(getContact());
 		else if (!input.compare("SEARCH"))
 		{
-			std::cout << "Enter the agenda position to search: ";
-			std::getline(std::cin, s_idx);
+			do {
+				std::cout << "Enter the agenda position to search: ";
+				std::getline(std::cin, s_idx);
+				if (!is_digits(s_idx))
+					std::cout << "Error - Insert a number\n";
+			} while(!is_digits(s_idx));
 			idx = std::stoi(s_idx);
 			pb.searchContact(idx);
 		}
