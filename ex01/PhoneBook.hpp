@@ -28,6 +28,7 @@ class PhoneBook
 		~PhoneBook();
 		void addContact(Contact contact);
 		void searchContact(int idx);
+		std::string resizeStr(std::string str);
 };
 
 #endif

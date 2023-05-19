@@ -24,20 +24,33 @@ void PhoneBook::addContact(Contact contact)
 		this->_contacts[this->_idx] = contact;
 		this->_idx++;
 	}
+	else if (this->_idx == 8)
+		this->_contacts[(this->_idx - 1)] = contact;
+}
+
+std::string PhoneBook::resizeStr(std::string str)
+{
+	std::string tmp = "";
+
+	if (str.length() > 10)
+	{
+		tmp = str.substr(0, 10) + ".";
+		return (tmp);
+	}
+	else
+		return (str);
 }
 
 void PhoneBook::searchContact(int idx)
 {
-	if (idx > 0 && idx < 8 )
+	if (idx >= 0 && idx < this->_idx && this->_idx != 0)
 	{
 		Contact contact = this->_contacts[idx];
 
-		// OJO! Esto esta mal!!! Revisar subject!!!
-		std::cout << contact.getFirstName() + "|";
-		std::cout << contact.getLastName() + "|";
-		std::cout << contact.getNickname() + "|";
-		std::cout << contact.getPhone() + "|";
-		std::cout << contact.getSecret() + "|";
+		std::cout << idx << " | ";
+		std::cout << resizeStr(contact.getFirstName()) + " | ";
+		std::cout << resizeStr(contact.getLastName()) + " | ";
+		std::cout << resizeStr(contact.getNickname()) + "\n";
 	}
 	else
 		std::cout << "The index is out of range\n";

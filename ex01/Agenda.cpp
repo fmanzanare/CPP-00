@@ -21,17 +21,50 @@ std::string stringToUpper(std::string str)
 	return (str);
 }
 
+Contact getContact()
+{
+	Contact contact = Contact();
+	std::string c_input = "";
+
+	std::cout << "Enter the fisrt name: ";
+	std::getline(std::cin, c_input);
+	contact.setFirstName(c_input);
+	std::cout << "Enter the last name: ";
+	std::getline(std::cin, c_input);
+	contact.setLastName(c_input);
+	std::cout << "Enter the nickname: ";
+	std::getline(std::cin, c_input);
+	contact.setNickName(c_input);
+	std::cout << "Enter the phone: ";
+	std::getline(std::cin, c_input);
+	contact.setPhone(c_input);
+	std::cout << "Enter a secret: ";
+	std::getline(std::cin, c_input);
+	contact.setSecret(c_input);
+	return (contact);
+}
+
 int	main()
 {
 	PhoneBook pb = PhoneBook();
 	std::string input = "";
+	std::string s_idx = "";
+	int	idx;
 
 	while (input.compare("EXIT"))
 	{
-		std::cout << "Enter a command please:\n";
+		std::cout << "Enter a command please: ";
 		std::getline(std::cin, input);
 		input = stringToUpper(input);
+		if (!input.compare("ADD"))
+			pb.addContact(getContact());
+		else if (!input.compare("SEARCH"))
+		{
+			std::cout << "Enter the agenda position to search: ";
+			std::getline(std::cin, s_idx);
+			idx = std::stoi(s_idx);
+			pb.searchContact(idx);
+		}
 	}
-
 	return (0);
 }
