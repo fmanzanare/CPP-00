@@ -14,7 +14,7 @@ NAME = agenda
 
 CC = c++
 
-CFLAGS = -Wall -Werror -Werror -std=c++98
+CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 SRCS =	Contact.cpp\
 		PhoneBook.cpp\
@@ -27,7 +27,7 @@ all:	$(NAME)
 $(OBJS):	$(SRCS)
 	@$(CC) $(CFLAGS) -c $(SRCS)
 
-$(NAME): $(OBJS)
+$(NAME):	$(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "Agenda compiled!!"
 
@@ -36,7 +36,7 @@ clean:
 
 fclean:		clean
 	@rm -f $(NAME)
-	@echo "Everything cleaned!"
+	@echo "Everything cleaned!!"
 
 re:			fclean all
 
