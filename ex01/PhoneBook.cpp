@@ -32,32 +32,38 @@ std::string PhoneBook::resizeStr(std::string str)
 {
 	std::string tmp = "";
 
-	if (str.length() > 10)
+	if (str.length() > 9)
 	{
-		tmp = str.substr(0, 10) + ".";
+		tmp = str.substr(0, 9) + ".";
 		return (tmp);
 	}
 	else
 		return (str);
 }
 
-// CHECK IT!!!!!!!! -> WRONG PRINT!!!
+void PhoneBook::printPhoneBook(void)
+{
+	for (int i = 0; i < this->_idx; i++)
+	{
+		std::cout << std::setw(10) << i << "|";
+		std::cout << std::setw(10) << resizeStr(this->_contacts[i].getFirstName()) << "|";
+		std::cout << std::setw(10) << resizeStr(this->_contacts[i].getLastName()) << "|";
+		std::cout << std::setw(10) << resizeStr(this->_contacts[i].getNickname()) << std::endl;
+	}
+}
+
 void PhoneBook::searchContact(int idx)
 {
 	if (idx >= 0 && idx < this->_idx && this->_idx != 0)
 	{
 		Contact contact = this->_contacts[idx];
 
-		std::cout << idx << " | ";
-		std::cout << resizeStr(contact.getFirstName()) + " | ";
-		std::cout << resizeStr(contact.getLastName()) + " | ";
-		std::cout << resizeStr(contact.getNickname()) + "\n";
+		std::cout << "First name: " << contact.getFirstName() << std::endl;
+		std::cout << "Last name: " << contact.getLastName() << std::endl;
+		std::cout << "Nick name: " << contact.getNickname() << std::endl;
+		std::cout << "Phone: " << contact.getPhone() << std::endl;
+		std::cout << "Secret: " << contact.getSecret() << std::endl;
 	}
 	else
 		std::cout << "The index is out of range\n";
-}
-
-void PhoneBook::printPhoneBook()
-{
-
 }

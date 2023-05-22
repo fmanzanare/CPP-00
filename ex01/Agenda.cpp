@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <stdlib.h>
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
@@ -21,26 +22,29 @@ std::string stringToUpper(std::string str)
 	return (str);
 }
 
+std::string getInput(void)
+{
+	std::string c_input = "";
+
+	if (!std::getline(std::cin, c_input))
+		std::exit(0);
+	return (c_input);
+}
+
 Contact getContact()
 {
 	Contact contact = Contact();
-	std::string c_input = "";
 
 	std::cout << "Enter the fisrt name: ";
-	std::getline(std::cin, c_input);
-	contact.setFirstName(c_input);
+	contact.setFirstName(getInput());
 	std::cout << "Enter the last name: ";
-	std::getline(std::cin, c_input);
-	contact.setLastName(c_input);
+	contact.setLastName(getInput());
 	std::cout << "Enter the nickname: ";
-	std::getline(std::cin, c_input);
-	contact.setNickName(c_input);
+	contact.setNickName(getInput());
 	std::cout << "Enter the phone: ";
-	std::getline(std::cin, c_input);
-	contact.setPhone(c_input);
+	contact.setPhone(getInput());
 	std::cout << "Enter a secret: ";
-	std::getline(std::cin, c_input);
-	contact.setSecret(c_input);
+	contact.setSecret(getInput());
 	return (contact);
 }
 
@@ -64,19 +68,19 @@ int	main()
 	while (input.compare("EXIT"))
 	{
 		std::cout << "Enter a command please: ";
-		std::getline(std::cin, input);
-		input = stringToUpper(input);
+		input = stringToUpper(getInput());
 		if (!input.compare("ADD"))
 			pb.addContact(getContact());
 		else if (!input.compare("SEARCH"))
 		{
+			pb.printPhoneBook();
 			do {
 				std::cout << "Enter the agenda position to search: ";
 				std::getline(std::cin, s_idx);
 				if (!is_digits(s_idx))
 					std::cout << "Error - Insert a number\n";
 			} while(!is_digits(s_idx));
-			idx = std::stoi(s_idx);
+			idx = std::atoi(s_idx.c_str());
 			pb.searchContact(idx);
 		}
 	}
