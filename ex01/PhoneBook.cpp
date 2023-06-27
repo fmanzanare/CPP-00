@@ -13,7 +13,11 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-PhoneBook::PhoneBook() : _idx(0) {}
+PhoneBook::PhoneBook()
+{
+	_idx = 0;
+	_aux = 0;
+}
 
 PhoneBook::~PhoneBook() {}
 
@@ -24,8 +28,17 @@ void PhoneBook::addContact(Contact contact)
 		this->_contacts[this->_idx] = contact;
 		this->_idx++;
 	}
-	else if (this->_idx == 8)
-		this->_contacts[(this->_idx - 1)] = contact;
+	else if (this->_idx == 8 && this->_aux < 8)
+	{
+		this->_contacts[(this->_aux)] = contact;
+		this->_aux++;
+	}
+	else if (this->_aux == 8)
+	{
+		this->_aux = 0;
+		this->_contacts[(this->_aux)] = contact;
+		this->_aux++;
+	}
 }
 
 std::string PhoneBook::resizeStr(std::string str)

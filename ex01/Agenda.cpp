@@ -26,8 +26,11 @@ std::string getInput(void)
 {
 	std::string c_input = "";
 
-	if (!std::getline(std::cin, c_input))
-		std::exit(0);
+	do {
+		std::getline(std::cin, c_input);
+		if (c_input.length() == 0)
+			std::cout << "Error: You must enter a value: ";
+	} while (c_input.length() == 0);
 	return (c_input);
 }
 
@@ -76,7 +79,7 @@ int	main()
 			pb.printPhoneBook();
 			do {
 				std::cout << "Enter the agenda position to search: ";
-				std::getline(std::cin, s_idx);
+				s_idx = getInput();
 				if (!is_digits(s_idx))
 					std::cout << "Error - Insert a number\n";
 			} while(!is_digits(s_idx));
