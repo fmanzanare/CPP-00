@@ -18,16 +18,16 @@ CFLAGS = -Wall -Werror -Werror -std=c++98
 
 SRCS = Megaphone.cpp
 
-OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
+OBJS = $(SRCS:.cpp=.o)
 
 all:	$(NAME)
 
-$(OBJS):	$(SRCS)
-	@$(CC) $(CFLAGS) -c $(SRCS)
-
-$(NAME): $(OBJS)
+$(NAME):	$(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "Megaphone compiled!!"
+
+%.o:	%.cpp
+	@$(CC) $(CFLAGS) -c $<
 
 clean:
 	@rm -f $(OBJS)
@@ -38,4 +38,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY: all clean fclean re
