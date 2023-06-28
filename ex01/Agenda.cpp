@@ -27,7 +27,11 @@ std::string getInput(void)
 	std::string c_input = "";
 
 	do {
-		std::getline(std::cin, c_input);
+		if (!std::getline(std::cin, c_input))
+		{
+			std::cout << "\n";
+			exit(0);
+		}
 		if (c_input.length() == 0)
 			std::cout << "Error: You must enter a value: ";
 	} while (c_input.length() == 0);

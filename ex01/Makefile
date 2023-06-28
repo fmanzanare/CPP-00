@@ -20,16 +20,16 @@ SRCS =	Contact.cpp\
 		PhoneBook.cpp\
 		Agenda.cpp\
 
-OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
+OBJS = $(SRCS:.cpp=.o)
 
 all:	$(NAME)
-
-$(OBJS):	$(SRCS)
-	@$(CC) $(CFLAGS) -c $(SRCS)
 
 $(NAME):	$(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "Agenda compiled!!"
+
+%.o:	%.cpp
+	@$(CC) $(CFLAGS) -c $<
 
 clean:
 	@rm -f $(OBJS)
@@ -40,4 +40,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY: all clean fclean re
