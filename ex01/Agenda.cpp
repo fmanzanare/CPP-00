@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include <stdlib.h>
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
